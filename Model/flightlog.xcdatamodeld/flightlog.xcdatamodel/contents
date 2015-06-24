@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C3103" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Aircraft" representedClassName="Aircraft" syncable="YES">
+        <attribute name="brokenHobbs" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="brokenTach" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tailNumber" optional="YES" attributeType="String" defaultValueString="None" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="Airport" representedClassName="Airport" syncable="YES">
+        <attribute name="airportLocation" optional="YES" attributeType="String" defaultValueString="None" syncable="YES"/>
+        <attribute name="airportName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="iata" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="icao" optional="YES" attributeType="String" defaultValueString="None" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="Crew" representedClassName="Crew" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="crewName" optional="YES" attributeType="String" defaultValueString="None" syncable="YES"/>
+        <attribute name="empStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="pilot1LogEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LogEntry" inverseName="pilot" inverseEntity="LogEntry" syncable="YES"/>
+        <relationship name="pilot2LogEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LogEntry" inverseName="pilot2" inverseEntity="LogEntry" syncable="YES"/>
+        <relationship name="pilot3LogEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LogEntry" inverseName="pilot3" inverseEntity="LogEntry" syncable="YES"/>
+        <relationship name="pilot4LogEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LogEntry" inverseName="pilot4" inverseEntity="LogEntry" syncable="YES"/>
+    </entity>
+    <entity name="LogEntry" representedClassName="LogEntry" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="fromICAO" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hobbsDuration" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="hobbsEnd" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="hobbsStart" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="logDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="logType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="maintenanceType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nonFlightReason" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syncInd" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="tachDuration" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tachEnd" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tachStart" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tailNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="toICAO" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="maintanceSchedule" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MaintanceSchedule" inverseName="logEntries" inverseEntity="MaintanceSchedule" syncable="YES"/>
+        <relationship name="pilot" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Crew" inverseName="pilot1LogEntries" inverseEntity="Crew" syncable="YES"/>
+        <relationship name="pilot2" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Crew" inverseName="pilot2LogEntries" inverseEntity="Crew" syncable="YES"/>
+        <relationship name="pilot3" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Crew" inverseName="pilot3LogEntries" inverseEntity="Crew" syncable="YES"/>
+        <relationship name="pilot4" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Crew" inverseName="pilot4LogEntries" inverseEntity="Crew" syncable="YES"/>
+        <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="logEntries" inverseEntity="Project" syncable="YES"/>
+        <relationship name="sensor" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Sensor" inverseName="logEntries" inverseEntity="Sensor" syncable="YES"/>
+    </entity>
+    <entity name="MaintanceSchedule" representedClassName="MaintanceSchedule" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateInterval" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="maintanceDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scheduleType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="seedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="seedTach" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tachInteravl" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="logEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LogEntry" inverseName="maintanceSchedule" inverseEntity="LogEntry" syncable="YES"/>
+    </entity>
+    <entity name="Project" representedClassName="Project" syncable="YES">
+        <attribute name="areaName" optional="YES" attributeType="String" defaultValueString="None" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="locationName" optional="YES" attributeType="String" defaultValueString="None" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectName" optional="YES" attributeType="String" defaultValueString="None" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="logEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LogEntry" inverseName="project" inverseEntity="LogEntry" syncable="YES"/>
+    </entity>
+    <entity name="Sensor" representedClassName="Sensor" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sensorName" optional="YES" attributeType="String" defaultValueString="None" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="logEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LogEntry" inverseName="sensor" inverseEntity="LogEntry" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Aircraft" positionX="-3386" positionY="-1809" width="146" height="135"/>
+        <element name="Airport" positionX="-3384" positionY="-1683" width="128" height="148"/>
+        <element name="Crew" positionX="-3393" positionY="-1539" width="144" height="180"/>
+        <element name="LogEntry" positionX="-3195" positionY="-1773" width="128" height="418"/>
+        <element name="MaintanceSchedule" positionX="-3213" positionY="-1365" width="128" height="195"/>
+        <element name="Project" positionX="-3033" positionY="-1800" width="128" height="150"/>
+        <element name="Sensor" positionX="-3033" positionY="-1620" width="144" height="120"/>
+    </elements>
+</model>
